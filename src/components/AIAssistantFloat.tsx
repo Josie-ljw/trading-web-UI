@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 
 import { getDemoAISignals } from '../data/demoAISignals'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import { useQuotes } from '../hooks/useQuotes'
 import type { AppLocale } from '../i18n/config'
 
@@ -44,10 +45,13 @@ type Props = {
   onToggle: () => void
 }
 
+const MOBILE_MQ = '(max-width: 768px)'
+
 export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language as AppLocale
   const quotes = useQuotes()
+  const mobileUi = useMediaQuery(MOBILE_MQ)
   const row = quotes[symbol]
   const mid = row ? (row.bid + row.ask) / 2 : 1
 
@@ -119,6 +123,7 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
   }, [])
 
   const onPointerDown = useCallback((e: React.PointerEvent<HTMLButtonElement>) => {
+    if (mobileUi) return
     if (e.button !== 0) return
     e.currentTarget.setPointerCapture(e.pointerId)
     dragRef.current = {
@@ -128,9 +133,10 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
       startBottom: bottomRef.current,
       moved: false,
     }
-  }, [])
+  }, [mobileUi])
 
   const onPointerMove = useCallback((e: React.PointerEvent<HTMLButtonElement>) => {
+    if (mobileUi) return
     const d = dragRef.current
     if (!d || e.pointerId !== d.pointerId) return
     const dy = e.clientY - d.startY
@@ -142,10 +148,11 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
       const next = clampBottom(d.startBottom - dy, window.innerHeight)
       setBottomPx(next)
     }
-  }, [])
+  }, [mobileUi])
 
   const onPointerUp = useCallback(
     (e: React.PointerEvent<HTMLButtonElement>) => {
+      if (mobileUi) return
       const d = dragRef.current
       if (!d || e.pointerId !== d.pointerId) return
       try {
@@ -165,14 +172,18 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
         }
       }
     },
-    [endDrag, onToggle],
+    [endDrag, mobileUi, onToggle],
   )
 
   const drawer = open ? (
-    <div className="ai-drawer-overlay" onClick={onToggle} role="presentation">
+    <div
+      className={`ai-drawer-overlay${mobileUi ? ' ai-drawer-overlay--mobile-modal' : ''}`}
+      onClick={onToggle}
+      role="presentation"
+    >
       <aside
         id="nebula-ai-panel"
-        className="ai-drawer"
+        className={`ai-drawer${mobileUi ? ' ai-drawer--mobile-modal' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="ai-drawer-title"
@@ -224,32 +235,51 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
     </div>
   ) : null
 
-  return (
-    <>
-      <div
-        className="ai-float-root"
-        style={{
-          bottom: `calc(${bottomPx}px + env(safe-area-inset-bottom, 0px))`,
-          right: 'max(0.75rem, env(safe-area-inset-right, 0px))',
-        }}
-      >
-        <div className="ai-launcher-row">
-          {!open && !isDragging && !hintDismissed ? (
-            <div className="ai-hint-bubble">
-              <p>{t('ai.hintBubble')}</p>
-              <button
-                type="button"
-                className="ai-hint-close"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setHintDismissed(true)
-                }}
-                aria-label={t('ai.closeHint')}
-              >
-                ×
-              </button>
-            </div>
-          ) : null}
+  const floatShell = (
+    <div
+      className="ai-float-root"
+      style={{
+        bottom: `calc(${bottomPx}px + env(safe-area-inset-bottom, 0px))`,
+        right: 'max(0.75rem, env(safe-area-inset-right, 0px))',
+      }}
+    >
+      <div className="ai-launcher-row">
+        {!mobileUi && !open && !isDragging && !hintDismissed ? (
+          <div className="ai-hint-bubble">
+            <p>{t('ai.hintBubble')}</p>
+            <button
+              type="button"
+              className="ai-hint-close"
+              onClick={(e) => {
+                e.stopPropagation()
+                setHintDismissed(true)
+              }}
+              aria-label={t('ai.closeHint')}
+            >
+              ×
+            </button>
+          </div>
+        ) : null}
+        {mobileUi ? (
+          <button
+            type="button"
+            className="ai-float-launcher ai-float-launcher--tap-only"
+            onClick={() => onToggle()}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onToggle()
+              }
+            }}
+            aria-expanded={open}
+            aria-controls="nebula-ai-panel"
+            title={t('ai.launcherShort')}
+          >
+            <span className="ai-float-launcher-glow" aria-hidden />
+            <RobotAvatar />
+            <span className="ai-float-launcher-label">{t('ai.launcherShort')}</span>
+          </button>
+        ) : (
           <button
             type="button"
             className={`ai-float-launcher ${isDragging ? 'is-dragging' : ''}`}
@@ -272,12 +302,17 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
             <RobotAvatar />
             <span className="ai-float-launcher-label">{t('ai.launcherShort')}</span>
           </button>
-        </div>
+        )}
       </div>
+    </div>
+  )
 
-      {typeof document !== 'undefined' && drawer
-        ? createPortal(drawer, document.body)
-        : null}
+  return (
+    <>
+      {typeof document !== 'undefined'
+        ? createPortal(floatShell, document.body)
+        : floatShell}
+      {typeof document !== 'undefined' && drawer ? createPortal(drawer, document.body) : null}
     </>
   )
 }

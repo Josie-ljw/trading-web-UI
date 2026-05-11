@@ -749,8 +749,8 @@ html[data-theme='light'] .locale-select {
 
 .ai-float-root {
   position: fixed;
-  /* 高于图表画布等局部层，避免手机端点击被遮挡 */
-  z-index: 160;
+  /* 挂到 body 后仍需压过页面内画布/面板 */
+  z-index: 9000;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -842,6 +842,12 @@ html[data-theme='light'] .locale-select {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* 手机：纯点击打开，不使用 grab 与 pointer 拖拽 */
+.ai-float-launcher--tap-only {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
 .ai-float-launcher-glow {
   pointer-events: none;
   position: absolute;
@@ -896,10 +902,48 @@ html[data-theme='light'] .locale-select {
   }
 }
 
+@keyframes ai-mobile-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ai-drawer-overlay--mobile-modal {
+  align-items: center;
+  justify-content: center;
+  padding: max(0.65rem, env(safe-area-inset-top, 0px)) max(0.65rem, env(safe-area-inset-right, 0px))
+    max(0.65rem, env(safe-area-inset-bottom, 0px)) max(0.65rem, env(safe-area-inset-left, 0px));
+}
+
+.ai-drawer--mobile-modal {
+  width: min(100%, 34rem);
+  max-width: calc(100vw - 1.25rem);
+  height: min(92dvh, 52rem);
+  max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 1.5rem);
+  border-left: none;
+  border-radius: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  animation: ai-mobile-modal-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html[data-theme='light'] .ai-drawer--mobile-modal {
+  box-shadow:
+    0 24px 56px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(99, 102, 241, 0.12);
+}
+
 .ai-drawer-overlay {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 9100;
   background: rgba(2, 6, 23, 0.55);
   display: flex;
   justify-content: flex-end;
