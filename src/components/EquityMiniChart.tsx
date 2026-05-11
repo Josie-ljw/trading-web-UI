@@ -2,7 +2,7 @@ import { ColorType, createChart, LineSeries, type LineData, type Time } from 'li
 import { useLayoutEffect, useRef } from 'react'
 
 import { useTheme } from '../context/ThemeProvider'
-import { chartInteractionPageScrollFriendly } from '../data/chartInteraction'
+import { chartInteractionZoomFriendly } from '../data/chartInteraction'
 
 function hashSeed(s: string): number {
   let h = 2166136261
@@ -58,7 +58,7 @@ export function EquityMiniChart({ data }: Props) {
     if (!el || data.length === 0) return
 
     const chart = createChart(el, {
-      ...chartInteractionPageScrollFriendly,
+      ...chartInteractionZoomFriendly,
       layout: {
         background: { type: ColorType.Solid, color: 'transparent' },
         textColor: p.text,

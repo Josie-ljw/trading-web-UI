@@ -2,7 +2,7 @@ import { ColorType, createChart, LineSeries, type LineData } from 'lightweight-c
 import { useLayoutEffect, useRef } from 'react'
 
 import { useTheme } from '../context/ThemeProvider'
-import { chartInteractionPageScrollFriendly } from '../data/chartInteraction'
+import { chartInteractionZoomFriendly } from '../data/chartInteraction'
 
 const PALETTE = {
   dark: {
@@ -40,7 +40,7 @@ export function VolatilityLineChart({ data, ariaLabel }: Props) {
     if (!el || data.length === 0) return
 
     const chart = createChart(el, {
-      ...chartInteractionPageScrollFriendly,
+      ...chartInteractionZoomFriendly,
       layout: {
         background: { type: ColorType.Solid, color: p.bg },
         textColor: p.text,
