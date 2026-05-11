@@ -1,39 +1,53 @@
-# AI Trading Demo · 高密度交易工作台
+# AI Trading Demo
 
-面向券商与金融科技场景的前端演示，单页整合行情、K 线、交易面板与 AI 助手，模拟交易终端的信息密度与交互路径。
+一个面向交易终端场景的前端演示项目，主打高密度信息展示、行情联动、K 线分析和 AI 辅助交互。
 
-## 界面预览
+> 本项目仅用于 UI 与交互演示，不构成任何投资建议；行情、持仓、AI 回复与交易结果均为模拟数据。
 
-以下为生产构建（`npm run build && npm run preview`）下的整页截图，含主工作台、资产看板、扩展分析区（成交量柱、盘口深度、波动率、多品种对比等）与底部免责声明。
+## 项目特点
 
-![AI Trading Demo 整页截图](./docs/screenshot.png)
+- 多模块交易工作台：行情、自选、K 线、交易面板、资产概览、AI 助手
+- 强联动交互：切换标的、周期、主题时，相关模块同步更新
+- 高性能展示：行情虚拟列表、`memo` 优化、图表独立渲染
+- AI 交互模拟：支持上下文问答与分块输出
+- 多端适配：桌面端高密度布局，移动端纵向信息流
 
-### 移动端预览
+## 技术栈
 
-窄屏（建议宽度 ≤768px）下为纵向信息流布局；AI 助手以底部入口与居中弹窗呈现，便于拇指操作。
+- `React 19` + `TypeScript`
+- `Vite`
+- `i18next` / `react-i18next`
+- `lightweight-charts`
+- `@tanstack/react-virtual`
 
-| 主工作台（行情 / K 线 / 交易区） | AI 助手弹窗 |
-| --- | --- |
-| ![移动端 · 主工作台](./docs/mobile-workbench.png) | ![移动端 · AI 助手弹窗](./docs/mobile-ai-modal.png) |
+## 本地运行
 
-部署预览地址：
-`https://josie-ljw.github.io/trading-web-UI/`
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
 
-源码仓库：`github.com/Josie-ljw/trading-web-UI`
+## 目录结构
 
----
+```text
+src/
+├── components/
+├── locales/
+├── styles/
+├── utils/
+└── ...
+```
 
-## 核心设计与技术点
+## 预览与部署
 
-- **多模块联动**：市场 Tab、选中品种、图表周期、均线开关、交易面板与 AI 上下文保持一致。
-- **行情与渲染**：全市场定时报价更新；行情表使用虚拟列表与行级 `memo` 控制重绘。
-- **图表层**：基于 `TradingView Lightweight Charts` 实现蜡烛图与 MA 叠加，并同步深浅主题；向下滚动可见成交量柱、波动率折线及多品种并排小图等常见终端模块（均为演示数据）。
-- **状态协同**：自选列表通过 `localStorage` 持久化，并用 `BroadcastChannel` 做多标签同步。
-- **AI 交互**：前端剧本驱动回复，使用分块输出模拟流式响应，无后端依赖。
-- **部署路径**：通过 `VITE_BASE` 适配 GitHub Pages 子路径与本地根路径。
+- 演示地址：`https://josie-ljw.github.io/trading-web-UI/`
+- 源码仓库：`github.com/Josie-ljw/trading-web-UI`
 
----
+部署到其他静态站点时，注意检查 `VITE_BASE` 配置是否正确。
 
 ## 声明
 
-本项目仅用于 UI、交互与技术演示，不构成任何投资建议；行情、持仓与 AI 输出均为模拟数据。
+仅用于演示，不构成投资建议。
