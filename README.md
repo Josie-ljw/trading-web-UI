@@ -2,10 +2,61 @@
 
 面向券商与金融科技场景的前端演示：在单页内整合市场分类、行情表、K 线主图、快捷下单、资产看板与 AI 助手，模拟真实交易终端的信息密度与交互路径。**所有数据均为前端演示生成，非真实行情，亦不构成投资建议。**
 
-**在线预览**（仓库需先在 Settings → Pages 中启用 GitHub Actions 作为部署来源）：  
-[https://josie-ljw.github.io/trading-web-demo/](https://josie-ljw.github.io/trading-web-demo/)
+部署成功后的**静态预览地址**（项目页站点，用户名小写）：  
+**[https://josie-ljw.github.io/trading-web-demo/](https://josie-ljw.github.io/trading-web-demo/)**
 
-源码： [github.com/Josie-ljw/trading-web-demo](https://github.com/Josie-ljw/trading-web-demo)
+源码仓库： [github.com/Josie-ljw/trading-web-demo](https://github.com/Josie-ljw/trading-web-demo)
+
+---
+
+## GitHub Pages 部署步骤（得到可访问的预览链接）
+
+仓库里已有工作流 [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)：推送 `main` 时会构建 Vite 产物并发布到 Pages。**首次使用前必须在网页里打开一次 Pages 开关**，否则部署步骤会报「Pages 未启用」类错误。
+
+### 1. 确认 Actions 可用
+
+1. 打开：<https://github.com/Josie-ljw/trading-web-demo/settings/actions>  
+2. **General** → **Actions permissions** 选 **Allow all actions and reusable workflows**（或至少允许本仓库工作流）。
+
+### 2. 把 Pages 改为「由 GitHub Actions 发布」（必做）
+
+1. 打开：<https://github.com/Josie-ljw/trading-web-demo/settings/pages>  
+2. **Build and deployment** 区域里，**Source** 不要选「Deploy from a branch」。  
+3. 在下拉框中选择 **GitHub Actions**。  
+4. 若页面提示选择工作流，选 **Deploy to GitHub Pages**（与仓库内 yaml 名称一致即可）。
+
+完成后再去 **Actions** 标签页，对最近一次失败的工作流点 **Re-run all jobs**；或向 `main` 再推送任意提交触发新一次构建。
+
+### 3. 等待流水线变绿
+
+1. 打开：<https://github.com/Josie-ljw/trading-web-demo/actions>  
+2. 进入 **Deploy to GitHub Pages** 这条 workflow，确认 **build** 与 **deploy** 两个 job 均成功。  
+3. 首次使用 `actions/deploy-pages` 时，若出现 **Environment** 审批提示，在运行页点击 **Review deployments** → 勾选 **github-pages** → **Approve and deploy**（仅首次常见）。
+
+### 4. 打开预览地址
+
+浏览器访问（末尾斜杠可加可不加）：  
+
+`https://josie-ljw.github.io/trading-web-demo/`
+
+若仍为 404：等待 1～3 分钟 CDN 刷新；或到 **Settings → Pages** 查看是否已显示 **Your site is live at …** 的链接。
+
+### 5.（可选）用命令行开启 Pages
+
+已安装 [GitHub CLI](https://cli.github.com/) 且已执行 `gh auth login` 时：
+
+```bash
+echo '{"build_type":"workflow","source":{"branch":"main","path":"/"}}' | \
+  gh api --method POST repos/Josie-ljw/trading-web-demo/pages --input -
+```
+
+若返回 **409**，表示 Pages 已存在，可查看当前配置：
+
+```bash
+gh api repos/Josie-ljw/trading-web-demo/pages
+```
+
+使用 **Personal access token** 时，可对 `https://api.github.com/repos/Josie-ljw/trading-web-demo/pages` 发送 **POST**，请求体同上，详见 [Create a GitHub Pages site](https://docs.github.com/en/rest/pages/pages?apiVersion=2022-11-28#create-a-github-pages-site)；Token 需有该仓库的管理权限（如 `repo` 范围）。
 
 ---
 
