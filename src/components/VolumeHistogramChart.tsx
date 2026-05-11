@@ -1,4 +1,11 @@
-import { ColorType, createChart, HistogramSeries, type HistogramData } from 'lightweight-charts'
+import {
+  ColorType,
+  createChart,
+  HistogramSeries,
+  type HistogramData,
+  isBusinessDay,
+  type SeriesDataItemTypeMap,
+} from 'lightweight-charts'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { useTheme } from '../context/ThemeProvider'
@@ -32,7 +39,10 @@ const fmtTime = (time: HistogramData['time']) => {
   if (typeof time === 'number') {
     return new Date(time * 1000).toLocaleString()
   }
-  return 'time' in time ? `${time.year}-${String(time.month).padStart(2, '0')}-${String(time.day).padStart(2, '0')}` : 'time'
+  if (isBusinessDay(time)) {
+    return `${time.year}-${String(time.month).padStart(2, '0')}-${String(time.day).padStart(2, '0')}`
+  }
+  return String(time)
 }
 
 export function VolumeHistogramChart({ data, ariaLabel }: Props) {
@@ -75,10 +85,26 @@ export function VolumeHistogramChart({ data, ariaLabel }: Props) {
     series.setData(data)
     chart.timeScale().fitContent()
 
-    const onClick = (param: { time?: unknown }) => {
-      if (param.time == null) return
-      const idx = data.findIndex((item) => String(item.time) === String(param.time))
-      if (idx >= 0) setSelectedIndex(idx)
+    const onClick = (param: { time?: unknown; seriesData?: Map<unknown, unknown> }) => {
+      let idx = -1
+
+      if (param.time != null) {
+        idx = data.findIndex((item) => String(item.time) === String(param.time))
+      }
+
+      if (idx < 0 && param.seriesData) {
+        const firstValue = [...param.seriesData.values()][0] as SeriesDataItemTypeMap[keyof SeriesDataItemTypeMap] | undefined
+        const clickedValue = firstValue && typeof firstValue === 'object' && 'value' in firstValue ? firstValue.value : null
+        if (clickedValue != null) {
+          idx = data.findIndex((item) => Number(item.value) === Number(clickedValue))
+        }
+      }
+
+      if (idx < 0) {
+        idx = data.length - 1
+      }
+
+      setSelectedIndex(idx)
     }
     chart.subscribeClick(onClick)
 
@@ -102,7 +128,9 @@ export function VolumeHistogramChart({ data, ariaLabel }: Props) {
       <div className="volume-histogram-detail" role="status" aria-live="polite">
         {selected ? (
           <>
-            <span className="mono volume-histogram-detail__value">{selected.value?.toLocaleString?.() ?? selected.value}</span>
+            <span className="mono volume-histogram-detail__value">
+              {Math.round(Number(selected.value) || 0).toLocaleString()}
+            </span>
             <span className="volume-histogram-detail__time">{fmtTime(selected.time)}</span>
           </>
         ) : (
