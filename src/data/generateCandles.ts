@@ -115,11 +115,12 @@ export function histogramVolumeFromCandles(candles: CandlestickData[]): Histogra
   return candles.map((c) => {
     const span = Math.max(1e-12, c.high - c.low)
     const body = Math.abs(c.close - c.open)
-    const v = span * (0.6 + rand() * 0.9) + body * (0.2 + rand() * 0.4)
+    const activity = span * (0.6 + rand() * 0.9) + body * (0.2 + rand() * 0.4)
+    const volume = Math.max(1200, Math.round(activity * 2500000))
     const up = c.close >= c.open
     return {
       time: c.time,
-      value: Math.max(0.0001, v),
+      value: volume,
       color: up ? 'rgba(34, 197, 94, 0.42)' : 'rgba(239, 68, 68, 0.42)',
     }
   })
