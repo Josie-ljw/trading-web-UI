@@ -23,6 +23,8 @@
     "WTIUSD": { "zh-CN": "WTI 原油", "en": "WTI Crude Oil", "en-SG": "WTI Crude Oil" },
     "BRENTUSD": { "zh-CN": "布伦特原油", "en": "Brent Crude Oil", "en-SG": "Brent Crude Oil" },
     "NATGAS": { "zh-CN": "天然气", "en": "Natural Gas", "en-SG": "Natural Gas" },
+    "COPPER": { "zh-CN": "铜", "en": "Copper", "en-SG": "Copper" },
+    "WHEAT": { "zh-CN": "小麦", "en": "Wheat", "en-SG": "Wheat" },
     "US500": { "zh-CN": "美国标普500", "en": "S&P 500 Index", "en-SG": "S&P 500 Index" },
     "US30": { "zh-CN": "道琼斯", "en": "Dow Jones Index", "en-SG": "Dow Jones Index" },
     "NAS100": { "zh-CN": "纳斯达克100", "en": "Nasdaq 100 Index", "en-SG": "Nasdaq 100 Index" },
@@ -58,6 +60,6 @@
     "commodity": { "zh-CN": "大宗商品", "en": "Commodities", "en-SG": "Commodities" },
     "index": { "zh-CN": "股指", "en": "Indices", "en-SG": "Indices" },
     "crypto": { "zh-CN": "加密", "en": "Crypto", "en-SG": "Crypto" },
-    "stock": { "zh-CN": "股票", "en": "Equities", "en-SG": "Equities" }
+    "stock": { "zh-CN": "股票 CFD", "en": "Stock CFDs", "en-SG": "Stock CFDs" }
   }
 }

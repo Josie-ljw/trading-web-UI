@@ -1,4 +1,4 @@
-import { useVirtualizer } from '@tanstack/react-virtual'
+import { measureElement, useVirtualizer } from '@tanstack/react-virtual'
 import { memo, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -124,8 +124,9 @@ export function MarketTable({
   const rowVirtualizer = useVirtualizer({
     count: filtered.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 44,
+    estimateSize: () => 56,
     overscan: 8,
+    measureElement,
   })
   /* eslint-enable react-hooks/incompatible-library */
 
@@ -170,6 +171,8 @@ export function MarketTable({
                 <div
                   key={inst.symbol}
                   className="vrow"
+                  data-index={vi.index}
+                  ref={rowVirtualizer.measureElement}
                   style={{
                     position: 'absolute',
                     top: 0,

@@ -31,12 +31,13 @@
     "emptyCategory": "该分类下暂无品种（演示）",
     "tabs": {
       "hot": "热门",
-      "metal": "金属",
+      "metal": "贵金属",
+      "energy": "能源",
       "crypto": "加密货币",
       "forex": "外汇",
       "index": "指数",
       "commodity": "大宗商品",
-      "stock": "股票"
+      "stock": "股票 CFD"
     }
   },
   "table": {
@@ -78,7 +79,11 @@
     "hintBuy": "市价买入参考 {{price}}（卖价侧，演示）",
     "hintSell": "市价卖出参考 {{price}}（买价侧，演示）",
     "submitBuy": "确认买入（演示）",
-    "submitSell": "确认卖出（演示）"
+    "submitSell": "确认卖出（演示）",
+    "submitting": "处理中…",
+    "submittedDemo": "已受理（演示）",
+    "toastBuy": "演示成交通知：{{ticket}} · 买入 {{vol}} 手 @ {{price}}（未连接真实撮合）",
+    "toastSell": "演示成交通知：{{ticket}} · 卖出 {{vol}} 手 @ {{price}}（未连接真实撮合）"
   },
   "portfolio": {
     "title": "资产看板",
@@ -124,5 +129,34 @@
       "macro": "宏观速览",
       "risk": "仓位与风控"
     }
+  },
+  "lowerDeck": {
+    "regionLabel": "扩展分析区",
+    "volumeTitle": "成交量分布",
+    "volumeSub": "由 K 线区间合成的演示量柱，用于感受主图下方的量能带布局",
+    "volumeAria": "成交量柱状图",
+    "depthTitle": "盘口深度（演示）",
+    "depthSub": "常见 L2 深度条的静态占位，非真实订单簿",
+    "depthBid": "买量",
+    "depthAsk": "卖量",
+    "depthPrice": "价位",
+    "volatilityTitle": "波动率刻度",
+    "volatilitySub": "模拟隐含波动率曲线，展示第二块时间序列图",
+    "volatilityAria": "波动率折线图",
+    "compareTitle": "多品种对比",
+    "compareSub": "并排 H1 蜡烛图，接近终端里的多图表联动布局",
+    "miniBlurb": "H1 演示",
+    "flowTitle": "资金流向示意",
+    "flowSub": "零售 / 机构 / 对冲 占比条，纯视觉占位",
+    "flowRetail": "零售情绪",
+    "flowInst": "机构净流",
+    "flowHedge": "对冲盘",
+    "flowNote": "以上占比与颜色仅为演示排版，不代表任何真实市场统计。"
+  },
+  "footer": {
+    "title": "免责声明",
+    "p1": "本页面及下方扩展模块均为前端交互演示：行情、盘口、成交量、波动率与资金流向等数据均为本地合成或静态占位，不构成交易建议或投资咨询。",
+    "p2": "AI 助手回复为预设剧本与流式模拟，不具备真实投研或下单能力。请勿将演示环境等同于实盘交易系统。",
+    "p3": "若您在实际业务中引用本演示，请自行补充合规文案、适当性提示与真实风控流程。"
   }
 }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useQuotes } from '../hooks/useQuotes'
@@ -7,6 +7,8 @@ import type { Instrument } from '../data/instruments'
 type Props = {
   instrument: Instrument
 }
+
+type SubmitDemo = 'idle' | 'pending' | 'done'
 
 export function TradePanel({ instrument }: Props) {
   const { t } = useTranslation()
@@ -24,6 +26,24 @@ export function TradePanel({ instrument }: Props) {
   const [limitPrice, setLimitPrice] = useState(mid)
   const [tp, setTp] = useState('')
   const [sl, setSl] = useState('')
+  const [submitDemo, setSubmitDemo] = useState<SubmitDemo>('idle')
+  const [demoTicket, setDemoTicket] = useState<string | null>(null)
+  const demoTimers = useRef<ReturnType<typeof setTimeout>[]>([])
+
+  const clearDemoTimers = useCallback(() => {
+    demoTimers.current.forEach(clearTimeout)
+    demoTimers.current = []
+  }, [])
+
+  useEffect(() => {
+    return () => clearDemoTimers()
+  }, [clearDemoTimers])
+
+  useEffect(() => {
+    clearDemoTimers()
+    setSubmitDemo('idle')
+    setDemoTicket(null)
+  }, [instrument.symbol, clearDemoTimers])
 
   const contractUnit = 100000
   const notional = volume * contractUnit * mid
@@ -41,6 +61,26 @@ export function TradePanel({ instrument }: Props) {
         : t('trade.hintSell', { price: execPriceStr }),
     [side, execPriceStr, t],
   )
+
+  const runSubmitDemo = () => {
+    if (submitDemo !== 'idle') return
+    clearDemoTimers()
+    setSubmitDemo('pending')
+    const tid = `DEMO-${Date.now().toString(36).toUpperCase().slice(-8)}`
+    const t1 = setTimeout(() => {
+      setSubmitDemo('done')
+      setDemoTicket(
+        side === 'buy'
+          ? t('trade.toastBuy', { ticket: tid, vol: String(volume), price: execPriceStr })
+          : t('trade.toastSell', { ticket: tid, vol: String(volume), price: execPriceStr }),
+      )
+    }, 420)
+    const t2 = setTimeout(() => {
+      setSubmitDemo('idle')
+      setDemoTicket(null)
+    }, 3200)
+    demoTimers.current.push(t1, t2)
+  }
 
   return (
     <section className="panel trade-panel" aria-label={t('trade.title')}>
@@ -168,11 +208,23 @@ export function TradePanel({ instrument }: Props) {
 
         <p className="trade-ticket">{ticketHint}</p>
 
+        {demoTicket ? <p className="trade-demo-toast" role="status">{demoTicket}</p> : null}
+
         <button
           type="button"
-          className={`trade-submit ${side === 'sell' ? 'trade-submit--sell' : ''}`}
+          className={`trade-submit ${side === 'sell' ? 'trade-submit--sell' : ''} ${
+            submitDemo === 'pending' ? 'trade-submit--busy' : ''
+          } ${submitDemo === 'done' ? 'trade-submit--ok' : ''}`}
+          disabled={submitDemo !== 'idle'}
+          onClick={runSubmitDemo}
         >
-          {side === 'buy' ? t('trade.submitBuy') : t('trade.submitSell')}
+          {submitDemo === 'pending'
+            ? t('trade.submitting')
+            : submitDemo === 'done'
+              ? t('trade.submittedDemo')
+              : side === 'buy'
+                ? t('trade.submitBuy')
+                : t('trade.submitSell')}
         </button>
       </div>
     </section>

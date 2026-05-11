@@ -8,6 +8,8 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { MarketScopeBar } from './components/MarketScopeBar'
 import { MarketTable } from './components/MarketTable'
 import { PortfolioPanel } from './components/PortfolioPanel'
+import { SiteFooter } from './components/SiteFooter'
+import { TerminalLowerDeck } from './components/TerminalLowerDeck'
 import { TradePanel } from './components/TradePanel'
 import { QuoteProvider } from './context/QuoteProvider'
 import { ThemeProvider } from './context/ThemeProvider'
@@ -87,7 +89,6 @@ function Shell() {
           <span className="m-label">{t('account.pl')}</span>
           <span className="m-val chg-up">+$128.40</span>
         </div>
-        <p className="sync-note">{t('app.syncHint')}</p>
       </section>
 
       <MarketScopeBar value={marketTab} onChange={setMarketTab} />
@@ -153,6 +154,10 @@ function Shell() {
       </div>
 
       <PortfolioPanel />
+
+      <TerminalLowerDeck instrument={selectedInst} />
+
+      <SiteFooter />
 
       <AIAssistantFloat
         symbol={selectedSymbol}

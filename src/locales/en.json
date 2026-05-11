@@ -31,12 +31,13 @@
     "emptyCategory": "No symbols in this category (demo)",
     "tabs": {
       "hot": "Popular",
-      "metal": "Metals",
+      "metal": "Precious metals",
+      "energy": "Energy",
       "crypto": "Crypto",
       "forex": "Forex",
       "index": "Indices",
       "commodity": "Commodities",
-      "stock": "Stocks"
+      "stock": "Stock CFDs"
     }
   },
   "table": {
@@ -78,7 +79,11 @@
     "hintBuy": "Market buy ref. {{price}} (ask side, demo)",
     "hintSell": "Market sell ref. {{price}} (bid side, demo)",
     "submitBuy": "Place buy (demo)",
-    "submitSell": "Place sell (demo)"
+    "submitSell": "Place sell (demo)",
+    "submitting": "Submitting…",
+    "submittedDemo": "Accepted (demo)",
+    "toastBuy": "Demo fill: {{ticket}} · buy {{vol}} lot(s) @ {{price}} (not routed to a real venue)",
+    "toastSell": "Demo fill: {{ticket}} · sell {{vol}} lot(s) @ {{price}} (not routed to a real venue)"
   },
   "portfolio": {
     "title": "Portfolio",
@@ -124,5 +129,34 @@
       "macro": "Macro snapshot",
       "risk": "Risk & sizing"
     }
+  },
+  "lowerDeck": {
+    "regionLabel": "Extended analytics",
+    "volumeTitle": "Volume histogram",
+    "volumeSub": "Synthetic volume bars derived from OHLC ranges — mimics the volume strip under a main chart",
+    "volumeAria": "Volume histogram chart",
+    "depthTitle": "Depth ladder (demo)",
+    "depthSub": "Static bid/ask ladder placeholder — not a real order book",
+    "depthBid": "Bid size",
+    "depthAsk": "Ask size",
+    "depthPrice": "Price",
+    "volatilityTitle": "Volatility strip",
+    "volatilitySub": "Mock implied-volatility line to add a second time-series chart",
+    "volatilityAria": "Volatility line chart",
+    "compareTitle": "Multi-symbol compare",
+    "compareSub": "Side-by-side H1 candles — closer to a multi-chart terminal layout",
+    "miniBlurb": "H1 demo",
+    "flowTitle": "Flow snapshot",
+    "flowSub": "Retail / institutional / hedge share bars — visual placeholder only",
+    "flowRetail": "Retail tilt",
+    "flowInst": "Inst. net flow",
+    "flowHedge": "Hedge desk",
+    "flowNote": "Percentages and colors are layout-only; they are not real market statistics."
+  },
+  "footer": {
+    "title": "Disclaimer",
+    "p1": "This page and the extended modules below are UI demos: prices, depth, volume, volatility, and flow visuals are synthesized or static placeholders — not investment advice.",
+    "p2": "The AI assistant uses canned scripts and simulated streaming; it is not real research or order routing. Do not treat this demo as a production trading system.",
+    "p3": "If you reuse this demo in a real product, add your own compliance copy, suitability notices, and operational risk controls."
   }
 }

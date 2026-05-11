@@ -1,4 +1,4 @@
-import type { CandlestickData, LineData, Time } from 'lightweight-charts'
+import type { CandlestickData, HistogramData, LineData, Time } from 'lightweight-charts'
 
 import type { ChartTimeframe } from './chartTimeframe'
 import { timeframeBarCount, timeframeBarSeconds } from './chartTimeframe'
@@ -107,4 +107,36 @@ export function computeSMA(candles: CandlestickData[], period: number): LineData
     line.push({ time: candles[i]!.time, value: sum / period })
   }
   return line
+}
+
+/** Synthetic volume bars from OHLC range (demo only). */
+export function histogramVolumeFromCandles(candles: CandlestickData[]): HistogramData[] {
+  const rand = mulberry32(hashSeed('vol-hist'))
+  return candles.map((c) => {
+    const span = Math.max(1e-12, c.high - c.low)
+    const body = Math.abs(c.close - c.open)
+    const v = span * (0.6 + rand() * 0.9) + body * (0.2 + rand() * 0.4)
+    const up = c.close >= c.open
+    return {
+      time: c.time,
+      value: Math.max(0.0001, v),
+      color: up ? 'rgba(34, 197, 94, 0.42)' : 'rgba(239, 68, 68, 0.42)',
+    }
+  })
+}
+
+/** Demo implied-vol style line for a volatility strip chart. */
+export function generateVolatilityLine(seed: string, points = 96): LineData[] {
+  const rand = mulberry32(hashSeed(seed))
+  const out: LineData[] = []
+  const now = Math.floor(Date.now() / 1000)
+  const step = 3600
+  let v = 14 + rand() * 6
+  for (let i = 0; i < points; i++) {
+    const t = (now - (points - 1 - i) * step) as Time
+    v += (rand() - 0.5) * 1.1
+    v = Math.max(8, Math.min(32, v))
+    out.push({ time: t, value: Math.round(v * 10) / 10 })
+  }
+  return out
 }

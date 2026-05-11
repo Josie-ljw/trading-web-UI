@@ -7,7 +7,7 @@ export type Instrument = {
   pipSize: number
 }
 
-/** 50 demo symbols — names rendered via locale in UI layer */
+/** Demo symbols — names rendered via locale in UI layer */
 export const INSTRUMENTS: Instrument[] = [
   { symbol: 'EURUSD', nameKey: 'EURUSD', categoryKey: 'forex', baseBid: 1.0852, digits: 5, pipSize: 0.0001 },
   { symbol: 'GBPUSD', nameKey: 'GBPUSD', categoryKey: 'forex', baseBid: 1.2734, digits: 5, pipSize: 0.0001 },
@@ -32,6 +32,8 @@ export const INSTRUMENTS: Instrument[] = [
   { symbol: 'WTIUSD', nameKey: 'WTIUSD', categoryKey: 'commodity', baseBid: 78.35, digits: 2, pipSize: 0.01 },
   { symbol: 'BRENTUSD', nameKey: 'BRENTUSD', categoryKey: 'commodity', baseBid: 82.1, digits: 2, pipSize: 0.01 },
   { symbol: 'NATGAS', nameKey: 'NATGAS', categoryKey: 'commodity', baseBid: 2.145, digits: 3, pipSize: 0.001 },
+  { symbol: 'COPPER', nameKey: 'COPPER', categoryKey: 'commodity', baseBid: 4.125, digits: 3, pipSize: 0.001 },
+  { symbol: 'WHEAT', nameKey: 'WHEAT', categoryKey: 'commodity', baseBid: 542.5, digits: 2, pipSize: 0.25 },
   { symbol: 'US500', nameKey: 'US500', categoryKey: 'index', baseBid: 5123.2, digits: 2, pipSize: 0.1 },
   { symbol: 'US30', nameKey: 'US30', categoryKey: 'index', baseBid: 38456, digits: 2, pipSize: 1 },
   { symbol: 'NAS100', nameKey: 'NAS100', categoryKey: 'index', baseBid: 17892, digits: 2, pipSize: 0.25 },

@@ -51,6 +51,13 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
     return clampBottom(stored, window.innerHeight)
   })
   const [isDragging, setIsDragging] = useState(false)
+  const [hintDismissed, setHintDismissed] = useState(() => {
+    try {
+      return localStorage.getItem('ai-float-hint-dismissed') === '1'
+    } catch {
+      return false
+    }
+  })
 
   const bottomRef = useRef(bottomPx)
   bottomRef.current = bottomPx
@@ -78,6 +85,15 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
       document.body.style.overflow = prev
     }
   }, [open])
+
+  useEffect(() => {
+    if (!hintDismissed) return
+    try {
+      localStorage.setItem('ai-float-hint-dismissed', '1')
+    } catch {
+      /* ignore */
+    }
+  }, [hintDismissed])
 
   useEffect(() => {
     if (!open) return
@@ -205,9 +221,20 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
         style={{ bottom: bottomPx, right: '0.75rem' }}
       >
         <div className="ai-launcher-row">
-          {!open && !isDragging ? (
+          {!open && !isDragging && !hintDismissed ? (
             <div className="ai-hint-bubble">
               <p>{t('ai.hintBubble')}</p>
+              <button
+                type="button"
+                className="ai-hint-close"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setHintDismissed(true)
+                }}
+                aria-label={t('ai.closeHint')}
+              >
+                ×
+              </button>
             </div>
           ) : null}
           <button
