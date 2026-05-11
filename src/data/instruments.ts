@@ -1,0 +1,64 @@
+export type Instrument = {
+  symbol: string
+  nameKey: string
+  categoryKey: string
+  baseBid: number
+  digits: number
+  pipSize: number
+}
+
+/** 50 demo symbols — names rendered via locale in UI layer */
+export const INSTRUMENTS: Instrument[] = [
+  { symbol: 'EURUSD', nameKey: 'EURUSD', categoryKey: 'forex', baseBid: 1.0852, digits: 5, pipSize: 0.0001 },
+  { symbol: 'GBPUSD', nameKey: 'GBPUSD', categoryKey: 'forex', baseBid: 1.2734, digits: 5, pipSize: 0.0001 },
+  { symbol: 'USDJPY', nameKey: 'USDJPY', categoryKey: 'forex', baseBid: 149.62, digits: 3, pipSize: 0.01 },
+  { symbol: 'AUDUSD', nameKey: 'AUDUSD', categoryKey: 'forex', baseBid: 0.6612, digits: 5, pipSize: 0.0001 },
+  { symbol: 'USDCAD', nameKey: 'USDCAD', categoryKey: 'forex', baseBid: 1.3589, digits: 5, pipSize: 0.0001 },
+  { symbol: 'USDCHF', nameKey: 'USDCHF', categoryKey: 'forex', baseBid: 0.9012, digits: 5, pipSize: 0.0001 },
+  { symbol: 'NZDUSD', nameKey: 'NZDUSD', categoryKey: 'forex', baseBid: 0.6021, digits: 5, pipSize: 0.0001 },
+  { symbol: 'EURGBP', nameKey: 'EURGBP', categoryKey: 'forex', baseBid: 0.8521, digits: 5, pipSize: 0.0001 },
+  { symbol: 'EURJPY', nameKey: 'EURJPY', categoryKey: 'forex', baseBid: 162.45, digits: 3, pipSize: 0.01 },
+  { symbol: 'GBPJPY', nameKey: 'GBPJPY', categoryKey: 'forex', baseBid: 190.52, digits: 3, pipSize: 0.01 },
+  { symbol: 'AUDJPY', nameKey: 'AUDJPY', categoryKey: 'forex', baseBid: 98.92, digits: 3, pipSize: 0.01 },
+  { symbol: 'EURAUD', nameKey: 'EURAUD', categoryKey: 'forex', baseBid: 1.6412, digits: 5, pipSize: 0.0001 },
+  { symbol: 'EURCHF', nameKey: 'EURCHF', categoryKey: 'forex', baseBid: 0.9788, digits: 5, pipSize: 0.0001 },
+  { symbol: 'GBPAUD', nameKey: 'GBPAUD', categoryKey: 'forex', baseBid: 1.9255, digits: 5, pipSize: 0.0001 },
+  { symbol: 'AUDNZD', nameKey: 'AUDNZD', categoryKey: 'forex', baseBid: 1.0982, digits: 5, pipSize: 0.0001 },
+  { symbol: 'USDSGD', nameKey: 'USDSGD', categoryKey: 'forex', baseBid: 1.3455, digits: 5, pipSize: 0.0001 },
+  { symbol: 'USDHKD', nameKey: 'USDHKD', categoryKey: 'forex', baseBid: 7.812, digits: 4, pipSize: 0.0001 },
+  { symbol: 'USDCNH', nameKey: 'USDCNH', categoryKey: 'forex', baseBid: 7.1821, digits: 5, pipSize: 0.0001 },
+  { symbol: 'XAUUSD', nameKey: 'XAUUSD', categoryKey: 'commodity', baseBid: 2328.4, digits: 2, pipSize: 0.1 },
+  { symbol: 'XAGUSD', nameKey: 'XAGUSD', categoryKey: 'commodity', baseBid: 27.42, digits: 3, pipSize: 0.01 },
+  { symbol: 'WTIUSD', nameKey: 'WTIUSD', categoryKey: 'commodity', baseBid: 78.35, digits: 2, pipSize: 0.01 },
+  { symbol: 'BRENTUSD', nameKey: 'BRENTUSD', categoryKey: 'commodity', baseBid: 82.1, digits: 2, pipSize: 0.01 },
+  { symbol: 'NATGAS', nameKey: 'NATGAS', categoryKey: 'commodity', baseBid: 2.145, digits: 3, pipSize: 0.001 },
+  { symbol: 'US500', nameKey: 'US500', categoryKey: 'index', baseBid: 5123.2, digits: 2, pipSize: 0.1 },
+  { symbol: 'US30', nameKey: 'US30', categoryKey: 'index', baseBid: 38456, digits: 2, pipSize: 1 },
+  { symbol: 'NAS100', nameKey: 'NAS100', categoryKey: 'index', baseBid: 17892, digits: 2, pipSize: 0.25 },
+  { symbol: 'UK100', nameKey: 'UK100', categoryKey: 'index', baseBid: 8123, digits: 2, pipSize: 0.5 },
+  { symbol: 'GER40', nameKey: 'GER40', categoryKey: 'index', baseBid: 18234, digits: 2, pipSize: 0.5 },
+  { symbol: 'HK50', nameKey: 'HK50', categoryKey: 'index', baseBid: 17234, digits: 2, pipSize: 1 },
+  { symbol: 'JP225', nameKey: 'JP225', categoryKey: 'index', baseBid: 38234, digits: 2, pipSize: 1 },
+  { symbol: 'AUS200', nameKey: 'AUS200', categoryKey: 'index', baseBid: 7654, digits: 2, pipSize: 0.5 },
+  { symbol: 'BTCUSD', nameKey: 'BTCUSD', categoryKey: 'crypto', baseBid: 64234, digits: 2, pipSize: 1 },
+  { symbol: 'ETHUSD', nameKey: 'ETHUSD', categoryKey: 'crypto', baseBid: 3124, digits: 2, pipSize: 0.1 },
+  { symbol: 'LTCUSD', nameKey: 'LTCUSD', categoryKey: 'crypto', baseBid: 78.2, digits: 2, pipSize: 0.01 },
+  { symbol: 'XRPUSD', nameKey: 'XRPUSD', categoryKey: 'crypto', baseBid: 0.5212, digits: 5, pipSize: 0.0001 },
+  { symbol: 'SOLUSD', nameKey: 'SOLUSD', categoryKey: 'crypto', baseBid: 142.3, digits: 2, pipSize: 0.01 },
+  { symbol: 'AAPL', nameKey: 'AAPL', categoryKey: 'stock', baseBid: 189.12, digits: 2, pipSize: 0.01 },
+  { symbol: 'MSFT', nameKey: 'MSFT', categoryKey: 'stock', baseBid: 412.45, digits: 2, pipSize: 0.01 },
+  { symbol: 'GOOGL', nameKey: 'GOOGL', categoryKey: 'stock', baseBid: 168.9, digits: 2, pipSize: 0.01 },
+  { symbol: 'TSLA', nameKey: 'TSLA', categoryKey: 'stock', baseBid: 178.2, digits: 2, pipSize: 0.01 },
+  { symbol: 'NVDA', nameKey: 'NVDA', categoryKey: 'stock', baseBid: 892.1, digits: 2, pipSize: 0.01 },
+  { symbol: 'META', nameKey: 'META', categoryKey: 'stock', baseBid: 478.3, digits: 2, pipSize: 0.01 },
+  { symbol: 'AMZN', nameKey: 'AMZN', categoryKey: 'stock', baseBid: 178.6, digits: 2, pipSize: 0.01 },
+  { symbol: 'BABA', nameKey: 'BABA', categoryKey: 'stock', baseBid: 74.2, digits: 2, pipSize: 0.01 },
+  { symbol: '0700.HK', nameKey: '0700.HK', categoryKey: 'stock', baseBid: 312.4, digits: 2, pipSize: 0.05 },
+  { symbol: '9988.HK', nameKey: '9988.HK', categoryKey: 'stock', baseBid: 78.35, digits: 2, pipSize: 0.05 },
+  { symbol: 'EURSGD', nameKey: 'EURSGD', categoryKey: 'forex', baseBid: 1.4612, digits: 5, pipSize: 0.0001 },
+  { symbol: 'GBPSGD', nameKey: 'GBPSGD', categoryKey: 'forex', baseBid: 1.7145, digits: 5, pipSize: 0.0001 },
+  { symbol: 'CADJPY', nameKey: 'CADJPY', categoryKey: 'forex', baseBid: 110.12, digits: 3, pipSize: 0.01 },
+  { symbol: 'CHFJPY', nameKey: 'CHFJPY', categoryKey: 'forex', baseBid: 165.88, digits: 3, pipSize: 0.01 },
+  { symbol: 'NOKUSD', nameKey: 'NOKUSD', categoryKey: 'forex', baseBid: 0.0945, digits: 5, pipSize: 0.0001 },
+  { symbol: 'USDSEK', nameKey: 'USDSEK', categoryKey: 'forex', baseBid: 10.452, digits: 5, pipSize: 0.0001 },
+]

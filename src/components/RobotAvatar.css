@@ -1,0 +1,70 @@
+.robot-avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.robot-avatar-svg {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.robot-avatar--sm .robot-avatar-svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.robot-antenna-ball {
+  animation: robot-antenna 2s ease-in-out infinite;
+  transform-origin: 24px 8px;
+}
+
+@keyframes robot-antenna {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 0.85;
+  }
+}
+
+.robot-eye-l,
+.robot-eye-r {
+  animation: robot-blink 3.2s infinite;
+  transform-origin: center;
+}
+
+.robot-eye-r {
+  animation-delay: 0.05s;
+}
+
+@keyframes robot-blink {
+  0%,
+  48%,
+  52%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.08);
+  }
+}
+
+.robot-mouth {
+  animation: robot-mouth 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes robot-mouth {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.15);
+  }
+}

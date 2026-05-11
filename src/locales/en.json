@@ -1,0 +1,128 @@
+{
+  "theme": {
+    "label": "Theme",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "app": {
+    "brandLogo": "DEMO",
+    "title": "AI Trading Demo",
+    "subtitle": "Demo · High-density trading workspace · Not real prices or investment advice",
+    "languageLabel": "Language",
+    "locale_zh": "中文",
+    "locale_en": "English",
+    "syncHint": "Watchlist sync across tabs (BroadcastChannel demo)"
+  },
+  "nav": {
+    "markets": "Markets",
+    "chart": "Chart",
+    "insights": "Insights",
+    "ai": "AI assistant"
+  },
+  "account": {
+    "equity": "Equity (demo)",
+    "margin": "Margin used",
+    "pl": "Floating P/L"
+  },
+  "markets": {
+    "scopeLabel": "Active market",
+    "categoryTabs": "Categories",
+    "newsTitle": "Headlines",
+    "emptyCategory": "No symbols in this category (demo)",
+    "tabs": {
+      "hot": "Popular",
+      "metal": "Metals",
+      "crypto": "Crypto",
+      "forex": "Forex",
+      "index": "Indices",
+      "commodity": "Commodities",
+      "stock": "Stocks"
+    }
+  },
+  "table": {
+    "watchlistTitle": "Watchlist",
+    "symbol": "Symbol",
+    "category": "Category",
+    "bid": "Bid",
+    "ask": "Ask",
+    "spread": "Spread",
+    "change": "Change",
+    "watch": "Watch",
+    "search": "Filter symbols…"
+  },
+  "chart": {
+    "title": "Main chart · TradingView Lightweight Charts",
+    "engine": "Chart engine",
+    "timeframe": "Timeframe",
+    "ma20": "MA(20)",
+    "hint": "Pick a symbol from the watchlist; multi-timeframe + MA demo; OHLC is locally generated."
+  },
+  "trade": {
+    "title": "Quick trade",
+    "mid": "Mid",
+    "direction": "Direction",
+    "buy": "Buy",
+    "sell": "Sell",
+    "orderType": "Order type",
+    "market": "Market",
+    "limit": "Limit",
+    "stop": "Stop",
+    "limitPrice": "Limit price",
+    "volume": "Lots",
+    "leverage": "Leverage",
+    "tp": "Take profit",
+    "sl": "Stop loss",
+    "notional": "Notional (demo)",
+    "estMargin": "Est. margin",
+    "marginNote": "Demo formula: notional ÷ leverage; contract multiplier is illustrative only.",
+    "hintBuy": "Market buy ref. {{price}} (ask side, demo)",
+    "hintSell": "Market sell ref. {{price}} (bid side, demo)",
+    "submitBuy": "Place buy (demo)",
+    "submitSell": "Place sell (demo)"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Positions · Working orders · Fills · Equity",
+    "positions": "Positions",
+    "orders": "Orders",
+    "history": "History",
+    "equity": "Equity curve",
+    "insights": "News & calendar",
+    "dayPl": "Demo floating P/L",
+    "equityCaption": "Illustrative equity path (synthetic random walk — not a backtest)"
+  },
+  "insights": {
+    "title": "Market insights (static demo)",
+    "news": "Headlines (NewsIQ-style)",
+    "calendar": "Economic calendar",
+    "sentiment": "Sentiment snapshot",
+    "readMore": "Summary"
+  },
+  "ai": {
+    "title": "AI strategy assistant",
+    "subtitle": "Sentiment / levels + canned streaming replies",
+    "drawerSubtitle": "Chat · quick intents · demo replies",
+    "placeholder": "Type a message or pick an intent below…",
+    "clear": "Clear",
+    "launcher": "AI assistant",
+    "launcherShort": "AI",
+    "hintBubble": "Tap to open — chat with the AI here.",
+    "dragHint": "Drag vertically · Tap to open the side drawer",
+    "close": "Close",
+    "closeDrawer": "Close assistant",
+    "quickIntents": "Shortcuts",
+    "inputPlaceholder": "Message…",
+    "send": "Send",
+    "voiceStart": "Voice input",
+    "voiceStop": "Stop",
+    "voiceUnsupported": "Speech recognition is not supported in this browser. Please type your message.",
+    "voiceEmpty": "(No speech detected)",
+    "resistance": "Resistance",
+    "support": "Support",
+    "chips": {
+      "technical": "Technical snapshot",
+      "macro": "Macro snapshot",
+      "risk": "Risk & sizing"
+    }
+  }
+}

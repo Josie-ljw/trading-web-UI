@@ -1,0 +1,128 @@
+{
+  "theme": {
+    "label": "主题",
+    "dark": "深色",
+    "light": "浅色"
+  },
+  "app": {
+    "brandLogo": "演示",
+    "title": "AI 交易演示",
+    "subtitle": "演示环境 · 高密度交易工作台 · 非真实行情与投资建议",
+    "languageLabel": "界面语言",
+    "locale_zh": "中文",
+    "locale_en": "English",
+    "syncHint": "多标签页自选同步（BroadcastChannel 演示）"
+  },
+  "nav": {
+    "markets": "市场",
+    "chart": "K 线图",
+    "insights": "资讯与日历",
+    "ai": "AI 助手"
+  },
+  "account": {
+    "equity": "净值（演示）",
+    "margin": "保证金占用",
+    "pl": "浮动盈亏"
+  },
+  "markets": {
+    "scopeLabel": "当前市场",
+    "categoryTabs": "品种分类",
+    "newsTitle": "市场快讯",
+    "emptyCategory": "该分类下暂无品种（演示）",
+    "tabs": {
+      "hot": "热门",
+      "metal": "金属",
+      "crypto": "加密货币",
+      "forex": "外汇",
+      "index": "指数",
+      "commodity": "大宗商品",
+      "stock": "股票"
+    }
+  },
+  "table": {
+    "watchlistTitle": "行情表 / Watchlist",
+    "symbol": "品种",
+    "category": "类别",
+    "bid": "买价",
+    "ask": "卖价",
+    "spread": "点差",
+    "change": "涨跌",
+    "watch": "自选",
+    "search": "筛选品种…"
+  },
+  "chart": {
+    "title": "主图表 · TradingView Lightweight Charts",
+    "engine": "K 线引擎",
+    "timeframe": "周期",
+    "ma20": "MA(20)",
+    "hint": "点击左侧行情表切换品种；支持多周期与均线演示；OHLC 为本地生成。"
+  },
+  "trade": {
+    "title": "快速交易",
+    "mid": "中间价",
+    "direction": "交易方向",
+    "buy": "买入",
+    "sell": "卖出",
+    "orderType": "订单类型",
+    "market": "市价",
+    "limit": "限价",
+    "stop": "止损/突破",
+    "limitPrice": "限价",
+    "volume": "手数",
+    "leverage": "杠杆",
+    "tp": "止盈 TP",
+    "sl": "止损 SL",
+    "notional": "名义价值（演示）",
+    "estMargin": "预估保证金",
+    "marginNote": "公式演示：名义价值 ÷ 杠杆；合约乘数固定为演示参数，非真实交易成本。",
+    "hintBuy": "市价买入参考 {{price}}（卖价侧，演示）",
+    "hintSell": "市价卖出参考 {{price}}（买价侧，演示）",
+    "submitBuy": "确认买入（演示）",
+    "submitSell": "确认卖出（演示）"
+  },
+  "portfolio": {
+    "title": "资产看板",
+    "subtitle": "持仓 · 挂单 · 成交 · 净值曲线",
+    "positions": "持仓",
+    "orders": "挂单",
+    "history": "历史成交",
+    "equity": "盈亏曲线",
+    "insights": "资讯日历",
+    "dayPl": "演示浮动盈亏",
+    "equityCaption": "演示账户净值走势（本地随机游走，非真实回测）"
+  },
+  "insights": {
+    "title": "市场洞察（静态演示）",
+    "news": "要闻（NewsIQ 概念）",
+    "calendar": "经济日历",
+    "sentiment": "情绪概览",
+    "readMore": "查看摘要"
+  },
+  "ai": {
+    "title": "AI 策略助手",
+    "subtitle": "情绪 / 阻力支撑 + 固定剧本流式演示",
+    "drawerSubtitle": "对话 · 快捷意图 · 演示回复",
+    "placeholder": "输入消息或点击下方快捷意图…",
+    "clear": "清空",
+    "launcher": "AI 策略助手",
+    "launcherShort": "助手",
+    "hintBubble": "点我打开助手，在这里和 AI 对话～",
+    "dragHint": "拖动可上下移动 · 点击打开右侧抽屉",
+    "close": "收起",
+    "closeDrawer": "关闭助手",
+    "quickIntents": "快捷",
+    "inputPlaceholder": "输入消息…",
+    "send": "发送",
+    "voiceStart": "语音输入",
+    "voiceStop": "停止录音",
+    "voiceUnsupported": "当前浏览器不支持语音识别，请改用文字输入。",
+    "voiceEmpty": "（未识别到语音内容）",
+    "resistance": "阻力参考",
+    "support": "支撑参考",
+    "chips": {
+      "technical": "技术结构速读",
+      "macro": "宏观速览",
+      "risk": "仓位与风控"
+    }
+  }
+}
