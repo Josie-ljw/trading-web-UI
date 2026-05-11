@@ -41,6 +41,20 @@ src/
 └── ...
 ```
 
+## 界面预览
+
+以下为生产构建（`npm run build && npm run preview`）下的整页截图，包含主工作台、资产看板、扩展分析区与底部免责声明。
+
+![AI Trading Demo 整页截图](./docs/screenshot.png)
+
+### 移动端预览
+
+窄屏（建议宽度 ≤ 768px）下会自动切换为纵向信息流布局；AI 助手以底部入口与居中弹窗呈现，更适合拇指操作。
+
+| 主工作台（行情 / K 线 / 交易区） | AI 助手弹窗 |
+| --- | --- |
+| ![移动端 · 主工作台](./docs/mobile-workbench.png) | ![移动端 · AI 助手弹窗](./docs/mobile-ai-modal.png) |
+
 ## 预览与部署
 
 - 演示地址：`https://josie-ljw.github.io/trading-web-UI/`
