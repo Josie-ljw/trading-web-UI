@@ -9,7 +9,7 @@ import {
 import { useLayoutEffect, useRef } from 'react'
 
 import { useTheme } from '../context/ThemeProvider'
-import { chartInteractionPageScrollFriendly } from '../data/chartInteraction'
+import { chartInteractionZoomFriendly } from '../data/chartInteraction'
 
 const PALETTE = {
   dark: {
@@ -50,7 +50,7 @@ export function CandlestickChart({ symbol, data, maData, secondsVisible = false 
     if (!el) return
 
     const chart = createChart(el, {
-      ...chartInteractionPageScrollFriendly,
+      ...chartInteractionZoomFriendly,
       layout: {
         background: { type: ColorType.Solid, color: p.bg },
         textColor: p.text,
