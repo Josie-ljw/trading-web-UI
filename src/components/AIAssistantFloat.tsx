@@ -11,7 +11,8 @@ import { RobotAvatar } from './RobotAvatar'
 
 const STORAGE_KEY = 'ai-float-bottom-px'
 const DEFAULT_BOTTOM = 12
-const LAUNCHER_BLOCK_MIN = 52
+/** 含移动端更大触摸目标与竖排提示条时的预留高度 */
+const LAUNCHER_BLOCK_MIN = 64
 
 function clampBottom(px: number, winH: number): number {
   const max = Math.max(DEFAULT_BOTTOM, winH - LAUNCHER_BLOCK_MIN - DEFAULT_BOTTOM)
@@ -27,6 +28,13 @@ function readStoredBottom(): number | null {
   } catch {
     return null
   }
+}
+
+/** 触摸抖动大，阈值过小会导致永远无法触发「点击打开」 */
+function dragThresholdPx(pointerType: string) {
+  if (pointerType === 'touch') return 32
+  if (pointerType === 'pen') return 14
+  return 8
 }
 
 type Props = {
@@ -64,6 +72,7 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
 
   const dragRef = useRef<{
     pointerId: number
+    pointerType: string
     startY: number
     startBottom: number
     moved: boolean
@@ -114,6 +123,7 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
     e.currentTarget.setPointerCapture(e.pointerId)
     dragRef.current = {
       pointerId: e.pointerId,
+      pointerType: e.pointerType,
       startY: e.clientY,
       startBottom: bottomRef.current,
       moved: false,
@@ -124,7 +134,7 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
     const d = dragRef.current
     if (!d || e.pointerId !== d.pointerId) return
     const dy = e.clientY - d.startY
-    if (Math.abs(dy) > 5) {
+    if (Math.abs(dy) > dragThresholdPx(d.pointerType)) {
       d.moved = true
       setIsDragging(true)
     }
@@ -218,7 +228,10 @@ export function AIAssistantFloat({ symbol, digits, open, onToggle }: Props) {
     <>
       <div
         className="ai-float-root"
-        style={{ bottom: bottomPx, right: '0.75rem' }}
+        style={{
+          bottom: `calc(${bottomPx}px + env(safe-area-inset-bottom, 0px))`,
+          right: 'max(0.75rem, env(safe-area-inset-right, 0px))',
+        }}
       >
         <div className="ai-launcher-row">
           {!open && !isDragging && !hintDismissed ? (

@@ -323,6 +323,36 @@ html[data-theme='light'] .locale-select {
   min-height: 160px;
 }
 
+.volume-histogram-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.volume-histogram-detail {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 0.5rem 0.2rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.volume-histogram-detail__value {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+
+.volume-histogram-detail__time {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.volume-histogram-detail__empty {
+  color: var(--text-muted);
+}
+
 .trade-panel {
   flex: 1;
   margin-bottom: 0;
@@ -719,7 +749,8 @@ html[data-theme='light'] .locale-select {
 
 .ai-float-root {
   position: fixed;
-  z-index: 50;
+  /* 高于图表画布等局部层，避免手机端点击被遮挡 */
+  z-index: 160;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -808,6 +839,7 @@ html[data-theme='light'] .locale-select {
   user-select: none;
   overflow: visible;
   animation: ai-float-pulse 2.4s ease-in-out infinite;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .ai-float-launcher-glow {
@@ -2323,6 +2355,24 @@ html[data-theme='light'] .bubble.assistant {
 
   .ai-float-root {
     max-width: min(320px, calc(100vw - 0.85rem));
+  }
+
+  /* 竖屏：提示在上、按钮在下，保证拇指区有足够可点面积 */
+  .ai-launcher-row {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .ai-float-launcher {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.45rem 0.85rem 0.45rem 0.55rem;
+    font-size: 0.78rem;
+  }
+
+  .ai-float-launcher .robot-avatar-svg {
+    width: 2rem;
+    height: 2rem;
   }
 
   .lower-deck-chart-frame {
