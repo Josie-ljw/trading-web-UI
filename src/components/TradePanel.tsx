@@ -62,8 +62,23 @@ export function TradePanel({ instrument }: Props) {
     [side, execPriceStr, t],
   )
 
+  const confirmationText =
+    side === 'buy'
+      ? t('trade.confirmBuy', { price: execPriceStr, volume })
+      : t('trade.confirmSell', { price: execPriceStr, volume })
+
+  const confirmStepText =
+    side === 'buy'
+      ? t('trade.confirmBuyStep2')
+      : t('trade.confirmSellStep2')
+
   const runSubmitDemo = () => {
     if (submitDemo !== 'idle') return
+    const firstCheck = window.confirm(confirmationText)
+    if (!firstCheck) return
+    const secondCheck = window.confirm(confirmStepText)
+    if (!secondCheck) return
+
     clearDemoTimers()
     setSubmitDemo('pending')
     const tid = `DEMO-${Date.now().toString(36).toUpperCase().slice(-8)}`

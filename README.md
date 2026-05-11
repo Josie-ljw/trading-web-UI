@@ -9,9 +9,9 @@
 ![AI Trading Demo 整页截图](./docs/screenshot.png)
 
 部署预览地址：
-`https://josie-ljw.github.io/trading-web-demo/`
+`https://josie-ljw.github.io/trading-web-UI/`
 
-源码仓库：`github.com/Josie-ljw/trading-web-demo`
+源码仓库：`github.com/Josie-ljw/trading-web-UI`
 
 ---
 
