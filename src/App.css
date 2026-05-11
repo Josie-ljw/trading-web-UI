@@ -1435,11 +1435,15 @@ html[data-theme='light'] .locale-select {
 .market-header,
 .market-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(3.25rem, 0.85fr) minmax(3.25rem, 0.85fr) minmax(2.75rem, 0.7fr) minmax(2.75rem, 0.75fr);
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) minmax(3.25rem, 0.85fr) minmax(3.25rem, 0.85fr) minmax(2.75rem, 0.7fr) minmax(2.75rem, 0.75fr);
   gap: 0.35rem 0.4rem;
   padding: 0.38rem 0.75rem;
   font-size: 0.78rem;
   align-items: start;
+}
+
+.market-row {
+  min-height: 3.4rem;
 }
 
 .market-header {
@@ -1489,11 +1493,22 @@ html[data-theme='light'] .locale-select {
   min-width: 0;
 }
 
+.cell.sym > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
 .sym-code {
   font-family: var(--mono);
   font-weight: 600;
   color: var(--text-strong);
   font-size: 0.82rem;
+  line-height: 1.15;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .sym-name {
@@ -2330,9 +2345,13 @@ html[data-theme='light'] .bubble.assistant {
 
   .market-header,
   .market-row {
-    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1.05fr) minmax(2.85rem, 0.72fr) minmax(2.85rem, 0.72fr) minmax(2.35rem, 0.62fr) minmax(2.35rem, 0.68fr);
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(2.85rem, 0.72fr) minmax(2.85rem, 0.72fr) minmax(2.35rem, 0.62fr) minmax(2.35rem, 0.68fr);
     font-size: 0.68rem;
     padding: 0.28rem 0.35rem;
+  }
+
+  .market-row {
+    min-height: 3.2rem;
   }
 
   .sym-code {

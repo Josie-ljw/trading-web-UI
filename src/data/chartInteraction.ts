@@ -16,3 +16,18 @@ export const chartInteractionPageScrollFriendly = {
     axisDoubleClickReset: true,
   },
 } as const
+
+export const chartInteractionZoomFriendly = {
+  handleScroll: {
+    mouseWheel: false,
+    pressedMouseMove: true,
+    horzTouchDrag: true,
+    vertTouchDrag: false,
+  },
+  handleScale: {
+    mouseWheel: true,
+    pinch: true,
+    axisPressedMouseMove: true,
+    axisDoubleClickReset: true,
+  },
+} as const
