@@ -8,6 +8,14 @@
 
 ![AI Trading Demo 整页截图](./docs/screenshot.png)
 
+### 移动端预览
+
+窄屏（建议宽度 ≤768px）下为纵向信息流布局；AI 助手以底部入口与居中弹窗呈现，便于拇指操作。
+
+| 主工作台（行情 / K 线 / 交易区） | AI 助手弹窗 |
+| --- | --- |
+| ![移动端 · 主工作台](./docs/mobile-workbench.png) | ![移动端 · AI 助手弹窗](./docs/mobile-ai-modal.png) |
+
 部署预览地址：
 `https://josie-ljw.github.io/trading-web-UI/`
 
